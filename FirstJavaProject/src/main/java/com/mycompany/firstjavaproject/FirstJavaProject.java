@@ -4,6 +4,8 @@
 
 package com.mycompany.firstjavaproject;
 
+import java.util.Scanner;
+
 /**
  *
  * @author MainPC_gneil
@@ -38,5 +40,8 @@ public class FirstJavaProject {
                 default:
                     System.out.println("Invalid choice.");
             }
+    
+        }
     }
+    
 }
