@@ -10,10 +10,14 @@ import java.util.Scanner;
  *
  * @author MainPC_gneil
  */
-public class FirstJavaProject {
-
+public class FirstJavaProject{
+    
     public static void main(String[] args) {
-                
+        homePage();
+    
+    }
+    
+    public static void homePage(){
         Scanner scanner = new Scanner(System.in);
         boolean running = true;
         
@@ -24,52 +28,63 @@ public class FirstJavaProject {
             System.out.println("1 - Login");
             System.out.println(".......................");
             System.out.println("0 - Exit");
-            System.out.print("What do you want to do?");
+            System.out.println("");
+            System.out.print("What do you want to do? ");
+            
             
             String input = scanner.nextLine();
             
             switch (input) {
                 case "1":
-                    System.out.println("Login part");
-                    Login();
+                    loginPage();
                     running = false;
                     break;
-                case "2":
+                case "0":
+                    System.out.println("");
                     System.out.println("Thank you for using our services!");
                     running = false;
                     break;
                 default:
                     System.out.println("Invalid choice.");
+                    System.out.println("");
                     running = false;
                     break;
             }
         }
     }
     
-    private static void Login(){
-        private String user = "user";
-        private String userPass = "user";        
-        private String admin = "admin";
-        private String adminPass = "admin";
+    public static void loginPage(){
         
-        Scanner scanner = new Scanner(System.in);
-        
-        System.out.print("User :" + " ");
-        String userInput = scanner.nextLine();
-        System.out.print("Password :" + " ");
-        String passwordInput = scanner.nextLine();
-        
-        
-        if (userInput.equals(admin) && passwordInput.equals(adminPass)) {
-            System.out.println("Hello Admin");
-        }
-        else if(userInput.equals(user) && passwordInput.equals(userPass)){
-            System.out.println("Hello User!");
-        }
-        else{
-            System.out.println("Wrong Credentials");
-        }
-    }
+            Login login = new Login();
+            String admin = login.getAdmin();
+            String adminPass = login.getAdminPass();
+            String user = login.getUser();
+            String userPass = login.getUserPass();
+            
+            Scanner scanner = new Scanner(System.in);
+            System.out.println("");
+            System.out.println("***********************");
+            System.out.println("*        LOGIN        *");
+            System.out.println("***********************");
+            System.out.println("");
+            System.out.print("User : " + " ");
+            String userInput = scanner.nextLine();
+            System.out.print("Password : " + " ");
+            String passwordInput = scanner.nextLine();
 
 
+            if (userInput.equals(admin) && passwordInput.equals(adminPass)) {
+                System.out.println("Hello Admin");
+            }
+            else if(userInput.equals(user) && passwordInput.equals(userPass)){
+                System.out.println("Hello User!");
+            }
+            else{
+                System.out.println("");
+                System.out.println("ERROR: Invalid Credentials.");
+                System.out.print("Press " +  "ENTER" + " to continue...");
+                scanner.nextLine();
+                homePage();
+            }
+        }
 }
