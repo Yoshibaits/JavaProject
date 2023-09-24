@@ -75,6 +75,7 @@ public class FirstJavaProject{
 
             if (userInput.equals(admin) && passwordInput.equals(adminPass)) {
                 System.out.println("Hello Admin");
+                administrator();
             }
             else if(userInput.equals(user) && passwordInput.equals(userPass)){
                 System.out.println("Hello User!");
@@ -87,4 +88,39 @@ public class FirstJavaProject{
                 homePage();
             }
         }
+    public static void administrator(){
+            Scanner scanner = new Scanner(System.in);
+            System.out.println("");
+            System.out.println("***********************");
+            System.out.println("*    ADMINISTRATOR    *");
+            System.out.println("***********************");
+            System.out.println("");
+            System.out.println("1 - Manage Products");
+            System.out.println(".......................");
+            System.out.println("2 - Manage Orders");
+            System.out.println("");
+            System.out.println("0 - Logout");
+            System.out.println("");
+            System.out.print("What do you want to do? ");
+            
+            String input = scanner.nextLine();
+            
+            switch (input) {
+            case "1":
+                System.out.println("MANAGE PRODUCTS");
+                break;
+                
+            case "2":
+                System.out.println("MANAGE ORDERS");
+                break;
+            case "0":
+                System.out.println("LOGOUT");
+                break;
+            default:
+                System.out.println("INVALID CHOICE");
+                System.out.print("PRESS ENTER FOR THE CHOICES...");
+                scanner.nextLine();
+                administrator();
+        }
+    }
 }
