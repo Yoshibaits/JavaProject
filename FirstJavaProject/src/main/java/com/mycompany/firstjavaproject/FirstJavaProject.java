@@ -47,10 +47,10 @@ public class FirstJavaProject {
     }
     
     private static void Login(){
-        String user = "user";
-        String userPass = "user";        
-        String admin = "admin";
-        String adminPass = "admin";
+        private String user = "user";
+        private String userPass = "user";        
+        private String admin = "admin";
+        private String adminPass = "admin";
         
         Scanner scanner = new Scanner(System.in);
         
@@ -58,7 +58,6 @@ public class FirstJavaProject {
         String userInput = scanner.nextLine();
         System.out.print("Password :" + " ");
         String passwordInput = scanner.nextLine();
-        
         
         
         if (userInput.equals(admin) && passwordInput.equals(adminPass)) {
@@ -71,4 +70,6 @@ public class FirstJavaProject {
             System.out.println("Wrong Credentials");
         }
     }
+
+
 }
