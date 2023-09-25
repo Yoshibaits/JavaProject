@@ -15,9 +15,10 @@ import java.util.Scanner;
 public class productServiceImpl implements productService{
     
     Scanner scanner = new Scanner(System.in);
+//    Product productList = new Product();
+    List<Product> productList = new ArrayList<>();
     
-            
-            
+    
     @Override
     public void manageProducts(){
             System.out.println("");
@@ -54,43 +55,60 @@ public class productServiceImpl implements productService{
     @Override
     public void addProduct() {
 
-        Product items = new Product();
-        double price = 0;
+        boolean running = true;
         System.out.println("");
         System.out.println("***********************");
         System.out.println("*     ADD PRODUCT     *");
         System.out.println("***********************");
         System.out.println("");
-        System.out.print("NAME: ");
-        String name = scanner.nextLine();
         
-        if(name != null){
-            System.out.println("");
-            System.out.print("PRICE: ");
-            
-            try {
-                price = scanner.nextInt();
+        while (running) {            
+            System.out.print("NAME: ");
+            String name = scanner.nextLine();
+            if(name != null){
+                System.out.println("");
+                System.out.print("PRICE: ");
+                double price = 0;
+                try {
+                    price = Integer.parseInt(scanner.nextLine());
+                } 
+                catch (NumberFormatException e) {
+                    System.out.println("ERROR: Invalid Number");
+                }
+                System.out.println("Are you sure you want to add this Product (Y/N): ");
                 
-                if(price != 0){
-                    System.out.println("Valid price entered: " + price);
+                String response = scanner.nextLine();
+                
+                switch (response) {
+                    case "Y":
+                        Product product = new Product(name, price);
+                        productList.add(product);
+                        System.out.println("");
+                        System.out.println("Product added Successfully");
+                        System.out.println("Press ENTER to continue....");
+                        scanner.nextLine();
+                        break;
+                    case "N":
+                        System.out.println("");
+                        System.out.println("Action canceled");
+                        System.out.println("Press ENTER to continue....");
+                        scanner.nextLine();
+                        manageProducts();
+                        break;
+                    default:
+                        System.out.println("invalid Choice going back to Homepage");
+                        manageProducts();
+                        break;
                 }
-                else{
-                    System.out.println("Price cannot be zero");
-                }
-            } 
-            
-            catch (java.util.InputMismatchException e) {
-                System.out.println("Invalid input. Please enter a valid integer for price.");
+            }
+            else{
+                System.out.println("Error: Invalid input.");
+                manageProducts();
+                
             }
         }
-        else{
-            System.out.println("No name Provided");
-        }
-        items.setProductName(name);
-        items.setPrice(price);
-        List<Product> product = new ArrayList<>();
-        product.add(items);
-        System.out.println(product);
+
+
     }
 }
     
