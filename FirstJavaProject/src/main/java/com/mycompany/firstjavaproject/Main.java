@@ -4,13 +4,16 @@
 
 package com.mycompany.firstjavaproject;
 
+import com.mycompany.firstjavaproject.product.Product;
+import com.mycompany.firstjavaproject.admin.adminServiceImpl;
+import com.mycompany.firstjavaproject.admin.adminService;
 import java.util.Scanner;
 
 /**
  *
  * @author MainPC_gneil
  */
-public class FirstJavaProject{
+public class Main{
     
     public static void main(String[] args) {
         homePage();
@@ -20,7 +23,7 @@ public class FirstJavaProject{
     public static void homePage(){
         Scanner scanner = new Scanner(System.in);
         boolean running = true;
-        Login sample = new Login();
+        adminService admin = new adminServiceImpl();
         
         
         while(running){
@@ -38,7 +41,7 @@ public class FirstJavaProject{
             
             switch (input) {
                 case "1":
-                    sample.loginPage();
+                    admin.loginPage();
                     running = false;
                     break;
                 case "0":
@@ -54,41 +57,8 @@ public class FirstJavaProject{
             }
         }
     }
-//     ADMINISTRATOR IS TEMPORARY DISABLED
+    
 
-    public static void administrator(){
-            Scanner scanner = new Scanner(System.in);
-            System.out.println("");
-            System.out.println("***********************");
-            System.out.println("*    ADMINISTRATOR    *");
-            System.out.println("***********************");
-            System.out.println("");
-            System.out.println("1 - Manage Products");
-            System.out.println(".......................");
-            System.out.println("2 - Manage Orders");
-            System.out.println("");
-            System.out.println("0 - Logout");
-            System.out.println("");
-            System.out.print("What do you want to do? ");
-            
-            String input = scanner.nextLine();
-            
-            switch (input) {
-            case "1":
-                System.out.println("MANAGE PRODUCTS");
-                break;
-                
-            case "2":
-                System.out.println("MANAGE ORDERS");
-                break;
-            case "0":
-                System.out.println("LOGOUT");
-                break;
-            default:
-                System.out.println("INVALID CHOICE");
-                System.out.print("PRESS ENTER FOR THE CHOICES...");
-                scanner.nextLine();
-                administrator();
-        }
-    }
+
+//    Outside the main function
 }
