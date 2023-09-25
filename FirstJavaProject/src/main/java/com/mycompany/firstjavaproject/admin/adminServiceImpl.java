@@ -6,9 +6,8 @@ package com.mycompany.firstjavaproject.admin;
 
 import com.mycompany.firstjavaproject.Login;
 import static com.mycompany.firstjavaproject.Main.homePage;
-import com.mycompany.firstjavaproject.product.Product;
-import java.util.ArrayList;
-import java.util.List;
+import com.mycompany.firstjavaproject.product.productService;
+import com.mycompany.firstjavaproject.product.productServiceImpl;
 import java.util.Scanner;
 
 /**
@@ -77,7 +76,7 @@ public class adminServiceImpl implements adminService{
 
         switch (input) {
         case "1":
-            System.out.println("MANAGE PRODUCTS");
+            manageProducts();
             break;
 
         case "2":

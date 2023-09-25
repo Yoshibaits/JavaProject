@@ -4,6 +4,8 @@
  */
 package com.mycompany.firstjavaproject.product;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -11,12 +13,13 @@ import java.util.Scanner;
  * @author MainPC_gneil
  */
 public class productServiceImpl implements productService{
+    
     Scanner scanner = new Scanner(System.in);
     
             
             
     @Override
-    public void ManageProducts() {
+    public void manageProducts(){
             System.out.println("");
             System.out.println("***********************");
             System.out.println("*       PRODUCTS      *");
@@ -48,12 +51,11 @@ public class productServiceImpl implements productService{
                     
             }
     }
-
     @Override
     public void addProduct() {
 
         Product items = new Product();
-        double price;
+        double price = 0;
         System.out.println("");
         System.out.println("***********************");
         System.out.println("*     ADD PRODUCT     *");
@@ -84,14 +86,11 @@ public class productServiceImpl implements productService{
         else{
             System.out.println("No name Provided");
         }
-        
-
-//        items.setProductName(name);
-//        items.setPrice(price);
-//        
-//        List<Product> product = new ArrayList<>();
-//        product.add(items);
-
+        items.setProductName(name);
+        items.setPrice(price);
+        List<Product> product = new ArrayList<>();
+        product.add(items);
+        System.out.println(product);
     }
 }
     

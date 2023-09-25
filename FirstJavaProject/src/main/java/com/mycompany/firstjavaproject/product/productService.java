@@ -10,7 +10,7 @@ package com.mycompany.firstjavaproject.product;
  */
 public interface productService {
     
-    public void ManageProducts();
-    public void addProduct();
+    void manageProducts();
+    void addProduct();
     
 }

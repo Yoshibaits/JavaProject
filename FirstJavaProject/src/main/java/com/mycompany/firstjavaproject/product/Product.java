@@ -12,11 +12,7 @@ public class Product {
     private String productName;
     private int ID;
     private double price;
-    
-//    public Product(String productName, double price){
-//        this.productName = productName;
-//        this.price = price;
-//    }
+
     
 
     public String getProductName() {
@@ -39,7 +35,7 @@ public class Product {
         return price;
     }
 
-    public void setPrice(int price) {
+    public void setPrice(double price) {
         this.price = price;
     }
 }
