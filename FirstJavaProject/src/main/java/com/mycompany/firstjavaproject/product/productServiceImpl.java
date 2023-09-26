@@ -19,30 +19,29 @@ public class productServiceImpl implements productService{
     
     
     Scanner scanner = new Scanner(System.in);
-//    Product productList = new Product();
-    List<Product> productList = new ArrayList<>();
+    ProductList productList = new ProductList();
     
+    List<Product> items = productList.getItems();
     
     @Override
     public void manageProducts(){
-        
+            
             System.out.println("");
             System.out.println("***********************");
             System.out.println("*       PRODUCTS      *");
             System.out.println("***********************");
             System.out.println("");
             
-//            if(productList.isEmpty()){
-//                System.out.println("No products found.");
-//                System.out.println("");                
-//            }
-//            else{
-                for(Product product : productList){
-                System.out.println("ID  NAME    PRICE");
-                System.out.println(product.getID()+ " " + product.getProductName() + " " + product.getPrice());
-                }
-                
-//            }
+            if(items.isEmpty()){
+                System.out.println("No products found.");
+                System.out.println("");                
+            }
+            else{
+                for(Product product : items){
+                    System.out.println("ID  NAME    PRICE");
+                    System.out.println(product.getID()+ " " + product.getProductName() + " " + product.getPrice());
+            }
+            }
             System.out.println(".......................");
             System.out.println("1 - Add New Product");
             System.out.println("2 - Remove Product");
@@ -99,7 +98,7 @@ public class productServiceImpl implements productService{
                 switch (response) {
                     case "Y":
                         Product product = new Product(name, price);
-                        productList.add(product);
+                        productList.addItem(product);
                         System.out.println("");
                         System.out.println("Product added Successfully");
                         System.out.println("Press ENTER to continue....");

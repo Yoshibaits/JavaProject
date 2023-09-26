@@ -63,8 +63,8 @@ public class adminServiceImpl implements adminService{
         System.out.println("*    ADMINISTRATOR    *");
         System.out.println("***********************");
         System.out.println("");
-        System.out.println("1 - Manage Products");
         System.out.println(".......................");
+        System.out.println("1 - Manage Products");
         System.out.println("2 - Manage Orders");
         System.out.println("");
         System.out.println("0 - Logout");

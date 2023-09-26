@@ -4,6 +4,8 @@
  */
 package com.mycompany.firstjavaproject.product;
 
+import java.util.List;
+
 /**
  *
  * @author MainPC_gneil

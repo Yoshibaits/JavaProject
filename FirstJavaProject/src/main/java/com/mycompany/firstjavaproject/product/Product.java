@@ -4,23 +4,16 @@
  */
 package com.mycompany.firstjavaproject.product;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  *
  * @author MainPC_gneil
  */
 public class Product {
-    private List<Product> productList;
     private static int nextId = 1;
     private String productName;
     private int id;
     private double price;
     
-    public Product(){
-        productList = new ArrayList<>();
-    }
     
 
     public Product(String productName, double price) {
