@@ -15,7 +15,7 @@ import java.util.Scanner;
  */
 public class adminServiceImpl implements adminService{
     Scanner scanner = new Scanner(System.in);
-    productServiceImpl productserviceimpl = new productServiceImpl();
+    
         
     @Override
     public void loginPage() {
@@ -56,7 +56,7 @@ public class adminServiceImpl implements adminService{
 
     @Override
     public void administrator() {
-
+        productServiceImpl productserviceimpl = new productServiceImpl();
         
         System.out.println("");
         System.out.println("***********************");

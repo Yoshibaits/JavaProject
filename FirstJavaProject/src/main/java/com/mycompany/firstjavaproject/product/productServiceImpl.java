@@ -4,6 +4,7 @@
  */
 package com.mycompany.firstjavaproject.product;
 
+import com.mycompany.firstjavaproject.admin.adminServiceImpl;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -14,6 +15,9 @@ import java.util.Scanner;
  */
 public class productServiceImpl implements productService{
     
+    
+    
+    
     Scanner scanner = new Scanner(System.in);
 //    Product productList = new Product();
     List<Product> productList = new ArrayList<>();
@@ -21,13 +25,26 @@ public class productServiceImpl implements productService{
     
     @Override
     public void manageProducts(){
+        
             System.out.println("");
             System.out.println("***********************");
             System.out.println("*       PRODUCTS      *");
             System.out.println("***********************");
             System.out.println("");
-            System.out.println("1 - Add New Product");
+            
+//            if(productList.isEmpty()){
+//                System.out.println("No products found.");
+//                System.out.println("");                
+//            }
+//            else{
+                for(Product product : productList){
+                System.out.println("ID  NAME    PRICE");
+                System.out.println(product.getID()+ " " + product.getProductName() + " " + product.getPrice());
+                }
+                
+//            }
             System.out.println(".......................");
+            System.out.println("1 - Add New Product");
             System.out.println("2 - Remove Product");
             System.out.println("");
             System.out.println("0 - Back");
@@ -54,7 +71,7 @@ public class productServiceImpl implements productService{
     }
     @Override
     public void addProduct() {
-
+        adminServiceImpl adminserviceimpl = new adminServiceImpl();
         boolean running = true;
         System.out.println("");
         System.out.println("***********************");
@@ -87,6 +104,8 @@ public class productServiceImpl implements productService{
                         System.out.println("Product added Successfully");
                         System.out.println("Press ENTER to continue....");
                         scanner.nextLine();
+                        running = false;
+                        adminserviceimpl.administrator();
                         break;
                     case "N":
                         System.out.println("");
@@ -94,17 +113,19 @@ public class productServiceImpl implements productService{
                         System.out.println("Press ENTER to continue....");
                         scanner.nextLine();
                         manageProducts();
+                        running = false;
                         break;
                     default:
                         System.out.println("invalid Choice going back to Homepage");
                         manageProducts();
+                        running = false;
                         break;
                 }
             }
             else{
                 System.out.println("Error: Invalid input.");
                 manageProducts();
-                
+                running = false;
             }
         }
 
