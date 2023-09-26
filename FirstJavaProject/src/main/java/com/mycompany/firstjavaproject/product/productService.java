@@ -14,5 +14,6 @@ public interface productService {
     
     void manageProducts();
     void addProduct();
+    void removeProduct();
     
 }

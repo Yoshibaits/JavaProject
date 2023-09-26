@@ -20,8 +20,8 @@ public class productServiceImpl implements productService{
     
     Scanner scanner = new Scanner(System.in);
     ProductList productList = new ProductList();
+//    List<Product> productList = new ArrayList<>();
     
-    List<Product> items = productList.getItems();
     
     @Override
     public void manageProducts(){
@@ -31,17 +31,8 @@ public class productServiceImpl implements productService{
             System.out.println("*       PRODUCTS      *");
             System.out.println("***********************");
             System.out.println("");
-            
-            if(items.isEmpty()){
-                System.out.println("No products found.");
-                System.out.println("");                
-            }
-            else{
-                for(Product product : items){
-                    System.out.println("ID  NAME    PRICE");
-                    System.out.println(product.getID()+ " " + product.getProductName() + " " + product.getPrice());
-            }
-            }
+            productList.displayItems(); // LOOPING BUT IT IS NOT SHOWING THE RECENTLY ADDED ITEM
+
             System.out.println(".......................");
             System.out.println("1 - Add New Product");
             System.out.println("2 - Remove Product");
@@ -56,7 +47,7 @@ public class productServiceImpl implements productService{
                     addProduct();
                     break;
                 case "2":
-                    System.out.println("TEMPORARY DISABLED REMOVE PRODUCT");
+                    removeProduct();
                     break;
                 case "0":
                     System.out.println("BACK STILL DISABLED ");
@@ -98,7 +89,9 @@ public class productServiceImpl implements productService{
                 switch (response) {
                     case "Y":
                         Product product = new Product(name, price);
-                        productList.addItem(product);
+                        productList.addItem(product);           
+                        productList.displayItems(); // Looping of for each <List>
+                        
                         System.out.println("");
                         System.out.println("Product added Successfully");
                         System.out.println("Press ENTER to continue....");
@@ -127,8 +120,15 @@ public class productServiceImpl implements productService{
                 running = false;
             }
         }
+    }
 
-
+    @Override
+    public void removeProduct() {
+        System.out.println("");
+        System.out.println("***********************");
+        System.out.println("*    REMOVE PRODUCT   *");
+        System.out.println("***********************");
+        System.out.println("");
     }
 }
     

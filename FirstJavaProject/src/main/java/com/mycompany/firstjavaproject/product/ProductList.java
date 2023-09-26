@@ -14,14 +14,17 @@ import java.util.List;
 public class ProductList {
     private List<Product> items = new ArrayList<>();
     
+    
+    
     public void addItem(Product product){
         items.add(product);
     }
-    
+
     public void displayItems(){
+        System.out.println("ID  NAME    PRICE");
         for(Product product : items){
-            System.out.println("ID  NAME    PRICE");
-            System.out.println(product.getID()+ " " + product.getProductName() + " " + product.getPrice());
+            
+            System.out.println(product.getID()+ "    " + product.getProductName() + "    " + product.getPrice());
             }
     }
 
