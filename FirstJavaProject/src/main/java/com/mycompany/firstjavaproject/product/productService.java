@@ -10,7 +10,6 @@ package com.mycompany.firstjavaproject.product;
  */
 public interface productService {
     void addProduct();
-    
     void manageProducts();
     void removeProduct();
 }

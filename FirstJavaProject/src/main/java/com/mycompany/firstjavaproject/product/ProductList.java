@@ -23,20 +23,6 @@ public class ProductList {
         items.remove(product);
     }
 
-//    public void displayItems(){
-//        if(items.isEmpty()){
-//            System.out.println("No products");
-//        }
-//        
-//        else{
-//            System.out.println("ID  NAME   PRICE");
-//            for(Product product : items){
-//                
-//                System.out.println(product.getID()+ "    " + product.getProductName() + "    " + product.getPrice());
-//            }
-//        }
-//    }
-
     public List<Product> getItems() {
         return items;
     }

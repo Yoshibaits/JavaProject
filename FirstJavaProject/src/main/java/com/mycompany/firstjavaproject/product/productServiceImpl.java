@@ -4,7 +4,7 @@
  */
 package com.mycompany.firstjavaproject.product;
 
-import com.mycompany.firstjavaproject.admin.adminServiceImpl;
+
 import java.util.List;
 import java.util.Scanner;
 
@@ -35,7 +35,6 @@ public class productServiceImpl implements productService{
             else{
                 System.out.println("ID    NAME   PRICE");
                 for(Product product : items){
-
                     System.out.println(product.getID()+ "    " + product.getProductName() + "    " + product.getPrice());
                 }
             }
@@ -67,64 +66,57 @@ public class productServiceImpl implements productService{
     
     @Override
     public void addProduct() {
-        adminServiceImpl adminserviceimpl = new adminServiceImpl();
-        boolean running = true;
+        boolean mainrun = true;
+        boolean run = true;
+        double price = 0;
         System.out.println("");
         System.out.println("***********************");
         System.out.println("*     ADD PRODUCT     *");
         System.out.println("***********************");
         System.out.println("");
         
-        while (running) {            
+        while (mainrun) {// promt user to add Name;     
             System.out.print("NAME: ");
             String name = scanner.nextLine();
-            if(name != null){
-                System.out.println("");
-                System.out.print("PRICE: ");
-                double price = 0;
-                try {
-                    price = Integer.parseInt(scanner.nextLine());
-                } 
-                catch (NumberFormatException e) {
-                    System.out.println("ERROR: Invalid Number");
+            if(name.isEmpty()){
+                System.out.println("Error: Invalid input.");
+            }
+            else if(name != null){
+                while (run) {// promt user to add price;
+                    System.out.print("PRICE: ");
+                    try {
+                        price = Integer.parseInt(scanner.nextLine());
+                        run = false;
+                    } 
+                    catch (NumberFormatException e) {
+                        System.out.println("ERROR: Invalid Number");
+                    }
                 }
                 System.out.println("Are you sure you want to add this Product (Y/N): ");
-                
                 String response = scanner.nextLine();
                 
-                switch (response) {
-                    case "Y":
-                        Product product = new Product(name, price);
-                        productList.addItem(product);           
-//                        manageProducts(productList); // Looping of for each <List>
-                        
-                        System.out.println("");
-                        System.out.println("Product added Successfully");
-                        System.out.println("Press ENTER to continue....");
-                        scanner.nextLine();
-                        manageProducts();
-                        running = false;
-//                        adminserviceimpl.administrator();
-                        break;
-                    case "N":
-                        System.out.println("");
-                        System.out.println("Action canceled");
-                        System.out.println("Press ENTER to continue....");
-                        scanner.nextLine();
-                        manageProducts();
-                        running = false;
-                        break;
-                    default:
-                        System.out.println("invalid Choice going back to Homepage");
-                        manageProducts();
-                        running = false;
-                        break;
+                if (response.equalsIgnoreCase("Y")){
+                    Product product = new Product(name, price);
+                    productList.addItem(product);// Added to LIST 
+                    System.out.println("");
+                    System.out.println("Product added Successfully");
+                    System.out.println("Press ENTER to continue....");
+                    scanner.nextLine();
+                    manageProducts();
+                    mainrun = false;
                 }
-            }
-            else{
-                System.out.println("Error: Invalid input.");
-                manageProducts();
-                running = false;
+                else if(response.equalsIgnoreCase("N")){
+                    System.out.println("");
+                    System.out.println("Action canceled");
+                    System.out.println("Press ENTER to continue....");
+                    scanner.nextLine();
+                    manageProducts();
+                    mainrun = false; 
+                }
+                else{
+                    System.out.println("Error: invalid character");
+                    manageProducts();
+                }
             }
         }
     }
@@ -144,16 +136,44 @@ public class productServiceImpl implements productService{
         System.out.println("");
         System.out.print("Product ID: ");
         String id = scanner.nextLine();
+        int numid = 0;
         
         for(Product product: items){
             if(id != null){
                 try {
-                   Integer.parseInt(id);
+                    numid = Integer.parseInt(id);
                 } 
                 catch (NumberFormatException e) {
                     System.out.println("ERROR: Invalid Number");
                 }
+                System.out.println("Are you sure you want to remove this product (Y/N) :");
+                String response = scanner.nextLine();
+                
+                if(response.equalsIgnoreCase("Y")){
+                    if(product.equals(numid)){
+                        productList.removeItem(product);
+                        System.out.println("Product removed successfully!");
+                        scanner.nextLine();
+                        manageProducts();
+                    }
+                    else{
+                        System.out.println("No product with ID number exist");
+                    }
+                }
+                
+                else if(response.equalsIgnoreCase("N")){
+                    System.out.println("Action canceled");
+                    manageProducts();
+                }
+                
+                else{
+                    System.out.println("Error: invalid character");
+                }
             }
+            else{
+                System.out.println("Error: Invalid Input");
+            }
+            
         }
         
     }
