@@ -5,6 +5,7 @@
 package com.mycompany.firstjavaproject.product;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -14,17 +15,19 @@ import java.util.List;
 public class ProductList {
     private List<Product> items = new ArrayList<>();
     
-    
-    
     public void addItem(Product product){
         items.add(product);
     }
-    public void removeItem(Product product){
-        items.remove(product);
+    public void removeItem(int idToRemove){
+        Iterator<Product> iterator = items.iterator();
+        while (iterator.hasNext()) {            
+            Product product = iterator.next();
+            if (product.getID() == idToRemove)
+                iterator.remove();
+        }
     }
-
+    
     public List<Product> getItems() {
         return items;
     }
-    
 }

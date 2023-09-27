@@ -5,6 +5,7 @@
 package com.mycompany.firstjavaproject.product;
 
 
+import com.mycompany.firstjavaproject.admin.adminServiceImpl;
 import java.util.List;
 import java.util.Scanner;
 
@@ -55,7 +56,8 @@ public class productServiceImpl implements productService{
                     removeProduct();
                     break;
                 case "0":
-                    System.out.println("BACK STILL DISABLED ");
+                    adminServiceImpl adminserviceimpl = new adminServiceImpl();
+                    adminserviceimpl.administrator();
                     break;
                 default:
                     System.out.println("INVALID CHOICE");
@@ -121,61 +123,55 @@ public class productServiceImpl implements productService{
         }
     }
     
-
-    
-    
-
-
     @Override
     public void removeProduct() {
-        List<Product> items = productList.getItems();
+        boolean mainrun = true;
+        boolean idrun = true;
+        String response;
+        
         System.out.println("");
         System.out.println("***********************");
         System.out.println("*    REMOVE PRODUCT   *");
         System.out.println("***********************");
         System.out.println("");
-        System.out.print("Product ID: ");
-        String id = scanner.nextLine();
-        int numid = 0;
         
-        for(Product product: items){
-            if(id != null){
+        while (mainrun) {            
+            System.out.print("Product ID: ");
+            String id = scanner.nextLine();
+            if(id == null){
+                System.out.println("Error: Invalid Input");
+            }
+            else if(id != null){
                 try {
-                    numid = Integer.parseInt(id);
-                } 
+                    while (idrun) {                        
+                        int numid = Integer.parseInt(id);
+                        System.out.println("Are you sure you want to remove this product (Y/N) :");
+                        response = scanner.nextLine();
+                        if(response.equalsIgnoreCase("Y")){
+                            productList.removeItem(numid);
+                            System.out.println("Product removed successfully!");
+                            System.out.println("Press ENTER to continue....");
+                            scanner.nextLine();
+                            manageProducts();
+                            idrun = false;
+                        }
+                        else if(response.equalsIgnoreCase("N")){
+                            System.out.println("Action canceled");
+                            manageProducts();
+                            idrun = false;
+                            mainrun = false;
+                        }
+                        else{
+                            System.out.println("Error: invalid character");
+                        }
+                    }
+                }
                 catch (NumberFormatException e) {
                     System.out.println("ERROR: Invalid Number");
                 }
-                System.out.println("Are you sure you want to remove this product (Y/N) :");
-                String response = scanner.nextLine();
-                
-                if(response.equalsIgnoreCase("Y")){
-                    if(product.equals(numid)){
-                        productList.removeItem(product);
-                        System.out.println("Product removed successfully!");
-                        scanner.nextLine();
-                        manageProducts();
-                    }
-                    else{
-                        System.out.println("No product with ID number exist");
-                    }
-                }
-                
-                else if(response.equalsIgnoreCase("N")){
-                    System.out.println("Action canceled");
-                    manageProducts();
-                }
-                
-                else{
-                    System.out.println("Error: invalid character");
-                }
-            }
-            else{
-                System.out.println("Error: Invalid Input");
             }
             
         }
-        
     }
 }
 
