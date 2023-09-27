@@ -21,49 +21,51 @@ public class productServiceImpl implements productService{
     @Override
     public void manageProducts() {
 
-            System.out.println("");
-            System.out.println("***********************");
-            System.out.println("*       PRODUCTS      *");
-            System.out.println("***********************");
-            System.out.println("");
-            
-            List<Product> items = productList.getItems();
-            
-            if(items.isEmpty()){
-                System.out.println("No products");
-            }
+        System.out.println("");
+        System.out.println("***********************");
+        System.out.println("*       PRODUCTS      *");
+        System.out.println("***********************");
+        System.out.println("");
+        
+//        PROBLEM
+        productList.addItem(new Product("B1", 200));
+        List<Product> items = productList.getItems();
+        
+        if(items.isEmpty()){
+            System.out.println("No products");
+        }
 
-            else{
-                System.out.println("ID    NAME   PRICE");
-                for(Product product : items){
-                    System.out.println(product.getID()+ "    " + product.getProductName() + "    " + product.getPrice());
-                }
+        else{
+            System.out.println("ID    NAME   PRICE");
+            for(Product product : items){
+                System.out.println(product.getID()+ "    " + product.getProductName() + "    " + product.getPrice());
             }
-            System.out.println(".......................");
-            System.out.println("1 - Add New Product");
-            System.out.println("2 - Remove Product");
-            System.out.println("");
-            System.out.println("0 - Back");
-            System.out.println("");
-            System.out.print("What do you want to do? ");
-            String input = scanner.nextLine();
-            
-            switch (input) {
-                case "1":
-                    addProduct();
-                    break;
-                case "2":
-                    removeProduct();
-                    break;
-                case "0":
-                    adminServiceImpl adminserviceimpl = new adminServiceImpl();
-                    adminserviceimpl.administrator();
-                    break;
-                default:
-                    System.out.println("INVALID CHOICE");
-                    System.out.print("PRESS ENTER FOR THE CHOICES...");
-                    scanner.nextLine();       
-            }
+        }
+        System.out.println(".......................");
+        System.out.println("1 - Add New Product");
+        System.out.println("2 - Remove Product");
+        System.out.println("");
+        System.out.println("0 - Back");
+        System.out.println("");
+        System.out.print("What do you want to do? ");
+        String input = scanner.nextLine();
+
+        switch (input) {
+            case "1":
+                addProduct();
+                break;
+            case "2":
+                removeProduct();
+                break;
+            case "0":
+                adminServiceImpl adminserviceimpl = new adminServiceImpl();
+                adminserviceimpl.administrator();
+                break;
+            default:
+                System.out.println("INVALID CHOICE");
+                System.out.print("PRESS ENTER FOR THE CHOICES...");
+                scanner.nextLine();       
+        }
     }
     
     @Override
@@ -173,6 +175,9 @@ public class productServiceImpl implements productService{
             
         }
     }
+
+
+    
 }
 
     

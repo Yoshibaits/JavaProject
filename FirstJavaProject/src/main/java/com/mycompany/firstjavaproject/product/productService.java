@@ -4,11 +4,14 @@
  */
 package com.mycompany.firstjavaproject.product;
 
+import java.util.List;
+
 /**
  *
  * @author MainPC_gneil
  */
 public interface productService {
+    
     void addProduct();
     void manageProducts();
     void removeProduct();

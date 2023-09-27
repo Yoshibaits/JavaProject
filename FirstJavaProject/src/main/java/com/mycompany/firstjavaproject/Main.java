@@ -52,7 +52,6 @@ public class Main{
                 default:
                     System.out.println("Invalid choice.");
                     System.out.println("");
-                    running = false;
                     break;
             }
         }

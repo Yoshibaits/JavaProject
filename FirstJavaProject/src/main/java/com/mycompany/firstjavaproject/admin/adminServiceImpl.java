@@ -7,6 +7,7 @@ package com.mycompany.firstjavaproject.admin;
 import com.mycompany.firstjavaproject.Login;
 import static com.mycompany.firstjavaproject.Main.homePage;
 import com.mycompany.firstjavaproject.product.productServiceImpl;
+import com.mycompany.firstjavaproject.user.customerServiceImpl;
 import java.util.Scanner;
 
 /**
@@ -40,10 +41,14 @@ public class adminServiceImpl implements adminService{
 
         if (userInput.equals(admin) && passwordInput.equals(adminPass)) {
             System.out.println("Hello Admin");
+            System.out.println("");
             administrator();
         }
         else if(userInput.equals(user) && passwordInput.equals(userPass)){
             System.out.println("Hello User!");
+            System.out.println("");
+            customerServiceImpl customerserviceimpl = new customerServiceImpl();
+            customerserviceimpl.customerHomeScreen();
         }
         else{
             System.out.println("");
