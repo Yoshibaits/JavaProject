@@ -5,7 +5,6 @@
 package com.mycompany.firstjavaproject.product;
 
 import com.mycompany.firstjavaproject.admin.adminServiceImpl;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -14,25 +13,32 @@ import java.util.Scanner;
  * @author MainPC_gneil
  */
 public class productServiceImpl implements productService{
-    
-    
-    
-    
-    Scanner scanner = new Scanner(System.in);
     ProductList productList = new ProductList();
-//    List<Product> productList = new ArrayList<>();
-    
+    Scanner scanner = new Scanner(System.in);
+     // Only one instance but the Items cant be retrieved from another method.
     
     @Override
-    public void manageProducts(){
-            
+    public void manageProducts() {
+
             System.out.println("");
             System.out.println("***********************");
             System.out.println("*       PRODUCTS      *");
             System.out.println("***********************");
             System.out.println("");
-            productList.displayItems(); // LOOPING BUT IT IS NOT SHOWING THE RECENTLY ADDED ITEM
+            
+            List<Product> items = productList.getItems();
+            
+            if(items.isEmpty()){
+                System.out.println("No products");
+            }
 
+            else{
+                System.out.println("ID    NAME   PRICE");
+                for(Product product : items){
+
+                    System.out.println(product.getID()+ "    " + product.getProductName() + "    " + product.getPrice());
+                }
+            }
             System.out.println(".......................");
             System.out.println("1 - Add New Product");
             System.out.println("2 - Remove Product");
@@ -55,10 +61,10 @@ public class productServiceImpl implements productService{
                 default:
                     System.out.println("INVALID CHOICE");
                     System.out.print("PRESS ENTER FOR THE CHOICES...");
-                    scanner.nextLine();
-                    
+                    scanner.nextLine();       
             }
     }
+    
     @Override
     public void addProduct() {
         adminServiceImpl adminserviceimpl = new adminServiceImpl();
@@ -90,14 +96,15 @@ public class productServiceImpl implements productService{
                     case "Y":
                         Product product = new Product(name, price);
                         productList.addItem(product);           
-                        productList.displayItems(); // Looping of for each <List>
+//                        manageProducts(productList); // Looping of for each <List>
                         
                         System.out.println("");
                         System.out.println("Product added Successfully");
                         System.out.println("Press ENTER to continue....");
                         scanner.nextLine();
+                        manageProducts();
                         running = false;
-                        adminserviceimpl.administrator();
+//                        adminserviceimpl.administrator();
                         break;
                     case "N":
                         System.out.println("");
@@ -121,15 +128,36 @@ public class productServiceImpl implements productService{
             }
         }
     }
+    
+
+    
+    
+
 
     @Override
     public void removeProduct() {
+        List<Product> items = productList.getItems();
         System.out.println("");
         System.out.println("***********************");
         System.out.println("*    REMOVE PRODUCT   *");
         System.out.println("***********************");
         System.out.println("");
+        System.out.print("Product ID: ");
+        String id = scanner.nextLine();
+        
+        for(Product product: items){
+            if(id != null){
+                try {
+                   Integer.parseInt(id);
+                } 
+                catch (NumberFormatException e) {
+                    System.out.println("ERROR: Invalid Number");
+                }
+            }
+        }
+        
     }
 }
+
     
 
