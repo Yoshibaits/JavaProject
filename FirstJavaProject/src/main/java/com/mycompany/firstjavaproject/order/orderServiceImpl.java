@@ -4,27 +4,54 @@
  */
 package com.mycompany.firstjavaproject.order;
 
+import com.mycompany.firstjavaproject.admin.adminService;
+import com.mycompany.firstjavaproject.admin.adminServiceImpl;
+import java.util.Scanner;
+
 /**
  *
  * @author MainPC_gneil
  */
-public class orderServiceImpl implements ordersService{
-
+public class orderServiceImpl implements orderService{
+    Scanner scanner = new Scanner(System.in);
     @Override
+    
     public void manageOrders() {
+        adminService adminserviceimpl = new adminServiceImpl();
+        boolean running = true;
         System.out.println("");
         System.out.println("***********************");
         System.out.println("*        ORDERS       *");
         System.out.println("***********************");
         System.out.println("");
-        
-        
+        // placement for condition for showing the orders
         System.out.println(".......................");
         System.out.println("1 - Mark Order As Delivered");
         System.out.println("");
         System.out.println("0 - Back");
         System.out.println("");
         System.out.print("What do you want to do? ");
+        String input = scanner.nextLine();
+        
+        while (running) {            
+            switch (input) {
+                case "1":
+                    System.out.println("disabled ");
+                    running = false;
+                    break;
+                case "2":
+                    System.out.println("disabled");
+                    running = false;
+                    break;
+                case "0":
+                    adminserviceimpl.administrator();
+                    running = false;
+                    break;
+                default:
+                    System.out.println("INVALID CHOICE");
+                    System.out.print("PRESS ENTER FOR THE CHOICES...");
+            } 
+        } 
     }
 
     @Override

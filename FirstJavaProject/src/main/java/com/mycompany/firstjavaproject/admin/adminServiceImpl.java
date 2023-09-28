@@ -6,6 +6,8 @@ package com.mycompany.firstjavaproject.admin;
 
 import com.mycompany.firstjavaproject.Login;
 import static com.mycompany.firstjavaproject.Main.homePage;
+import com.mycompany.firstjavaproject.order.orderService;
+import com.mycompany.firstjavaproject.order.orderServiceImpl;
 import com.mycompany.firstjavaproject.product.productService;
 import com.mycompany.firstjavaproject.product.productServiceImpl;
 import com.mycompany.firstjavaproject.user.customerServiceImpl;
@@ -17,7 +19,7 @@ import java.util.Scanner;
  */
 public class adminServiceImpl implements adminService{
     Scanner scanner = new Scanner(System.in);
-    
+
         
     @Override
     public void loginPage() {
@@ -63,7 +65,7 @@ public class adminServiceImpl implements adminService{
     @Override
     public void administrator() {
         productService productserviceimpl = new productServiceImpl();
-        
+        orderService orderserviceimpl = new orderServiceImpl();
         System.out.println("");
         System.out.println("***********************");
         System.out.println("*    ADMINISTRATOR    *");
@@ -87,7 +89,7 @@ public class adminServiceImpl implements adminService{
 
         case "2":
             System.out.println("MANAGE ORDERS");
-            break;
+            orderserviceimpl.manageOrders();
         case "0":
             System.out.println("LOGOUT");
             homePage();

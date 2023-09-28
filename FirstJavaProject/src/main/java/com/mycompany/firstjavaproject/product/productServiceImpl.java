@@ -72,9 +72,6 @@ public class productServiceImpl implements productService{
                 scanner.nextLine();       
         }
     }
-    
-    
-    
     @Override
     public void addProduct() {
         boolean mainrun = true;
@@ -181,12 +178,7 @@ public class productServiceImpl implements productService{
             }
             
         }
-    }
-
-
-
-
-    
+    } 
 }
 
     

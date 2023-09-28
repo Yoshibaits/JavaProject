@@ -8,7 +8,7 @@ package com.mycompany.firstjavaproject.order;
  *
  * @author MainPC_gneil
  */
-public interface ordersService {
+public interface orderService {
     void manageOrders();
     void updateOrders();
 }
