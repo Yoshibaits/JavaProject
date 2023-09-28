@@ -1,8 +1,11 @@
 package com.mycompany.firstjavaproject.user;
 
+import com.mycompany.firstjavaproject.admin.adminService;
 import com.mycompany.firstjavaproject.admin.adminServiceImpl;
 import com.mycompany.firstjavaproject.product.Product;
 import com.mycompany.firstjavaproject.product.ProductList;
+import com.mycompany.firstjavaproject.product.productService;
+import com.mycompany.firstjavaproject.product.productServiceImpl;
 import java.util.List;
 import java.util.Scanner;
 
@@ -17,9 +20,20 @@ import java.util.Scanner;
  * @author MainPC_gneil
  */
 public class customerServiceImpl implements customerService{
-    ProductList productList = new ProductList();
+//    productService productserviceimpl = new productServiceImpl(); // Creates new instance (meaning completely new instance)
+//    productServiceImpl list ; //returns null can't use to retain values
+//    List<Product> items = productserviceimpl.displayProducts();
+//    List<Product> items = productList.getItems(); // created aninstance that will retrieve values
+//    private productService productServiceImpl;//null
+    
+    
     Scanner scanner = new Scanner(System.in);
-    adminServiceImpl  adminserviceimpl = new adminServiceImpl();
+    adminService  adminserviceimpl = new adminServiceImpl();
+
+    private productService productServiceImpl = new productServiceImpl();  
+    public List<Product> items = productServiceImpl.getItemsList(); // this will not giveyou the value of the previous instance because this is a different one 
+    // in Shop() method it will return as no products
+
     
     @Override
     public void customerHomeScreen() {
@@ -54,17 +68,15 @@ public class customerServiceImpl implements customerService{
                     System.out.print("PRESS ENTER FOR THE CHOICES...");
             } 
         }
-        
-        
     }
 
     @Override
     public void shop() {
+        boolean running = true;
         System.out.println("***********************");
         System.out.println("*         SHOP        *");
         System.out.println("***********************");
-        List<Product> items = productList.getItems();
-        
+
         if(items.isEmpty()){
             System.out.println("No products");
         }
@@ -79,8 +91,26 @@ public class customerServiceImpl implements customerService{
         System.out.println("0 - Back");
         System.out.println("");
         System.out.print("What do you want to order? ");
+        String input = scanner.nextLine();
         
-        
+        while (running) {            
+            switch (input) {
+                case "1":
+                    System.out.println("disabled ");
+                    running = false;
+                    break;
+                case "2":
+                    System.out.println("disabled");
+                    running = false;
+                    break;
+                case "0":
+                    customerHomeScreen();
+                    running = false;
+                    break;
+                default:
+                    System.out.println("INVALID CHOICE");
+                    System.out.print("PRESS ENTER FOR THE CHOICES...");
+            } 
+        } 
     }
-    
 }

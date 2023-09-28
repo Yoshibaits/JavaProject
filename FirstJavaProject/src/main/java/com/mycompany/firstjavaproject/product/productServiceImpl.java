@@ -5,6 +5,7 @@
 package com.mycompany.firstjavaproject.product;
 
 
+import com.mycompany.firstjavaproject.admin.adminService;
 import com.mycompany.firstjavaproject.admin.adminServiceImpl;
 import java.util.List;
 import java.util.Scanner;
@@ -14,9 +15,17 @@ import java.util.Scanner;
  * @author MainPC_gneil
  */
 public class productServiceImpl implements productService{
-    ProductList productList = new ProductList();
+    private ProductList productList = new ProductList();
     Scanner scanner = new Scanner(System.in);
-     // Only one instance but the Items cant be retrieved from another method.
+    
+    // created in hopes of getting the details of this productServiceImpl
+    // in short words for the instance productList
+    // cannot get the values to productList instance to be used for customerServiceImpl
+    @Override
+    public List<Product> getItemsList() {
+        return productList.getItems();
+    }
+    
     
     @Override
     public void manageProducts() {
@@ -26,11 +35,7 @@ public class productServiceImpl implements productService{
         System.out.println("*       PRODUCTS      *");
         System.out.println("***********************");
         System.out.println("");
-        
-//        PROBLEM
-        productList.addItem(new Product("B1", 200));
         List<Product> items = productList.getItems();
-        
         if(items.isEmpty()){
             System.out.println("No products");
         }
@@ -58,7 +63,7 @@ public class productServiceImpl implements productService{
                 removeProduct();
                 break;
             case "0":
-                adminServiceImpl adminserviceimpl = new adminServiceImpl();
+                adminService adminserviceimpl = new adminServiceImpl();
                 adminserviceimpl.administrator();
                 break;
             default:
@@ -67,6 +72,8 @@ public class productServiceImpl implements productService{
                 scanner.nextLine();       
         }
     }
+    
+    
     
     @Override
     public void addProduct() {
@@ -175,6 +182,8 @@ public class productServiceImpl implements productService{
             
         }
     }
+
+
 
 
     

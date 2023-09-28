@@ -6,6 +6,7 @@ package com.mycompany.firstjavaproject.admin;
 
 import com.mycompany.firstjavaproject.Login;
 import static com.mycompany.firstjavaproject.Main.homePage;
+import com.mycompany.firstjavaproject.product.productService;
 import com.mycompany.firstjavaproject.product.productServiceImpl;
 import com.mycompany.firstjavaproject.user.customerServiceImpl;
 import java.util.Scanner;
@@ -61,7 +62,7 @@ public class adminServiceImpl implements adminService{
 
     @Override
     public void administrator() {
-        productServiceImpl productserviceimpl = new productServiceImpl();
+        productService productserviceimpl = new productServiceImpl();
         
         System.out.println("");
         System.out.println("***********************");
@@ -98,10 +99,6 @@ public class adminServiceImpl implements adminService{
             administrator();
         }
     }
-    
-
-
-    
     //    Outside the class
 }
 
